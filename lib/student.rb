@@ -20,9 +20,15 @@ class Student
      DB[:conn].execute(sql)
    end
 
-   def drop_table
+   def save
+   sql = <<-SQL
+     INSERT INTO students (name, grade)
+     VALUES (?, ?)
+   SQL
 
-   end
+   DB[:conn].execute(sql, self.name, self.grade)
+ end
+
 end
 # Remember, you can access your database connection anywhere in this class
 #  with DB[:conn]
